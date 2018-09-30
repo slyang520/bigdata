@@ -22,6 +22,8 @@ employee 类型名称
 
 2:) 检索一个文档
 curl -X GET "localhost:9200/megacorp/employee/1"
+
+
 {
   "_index" :   "megacorp",
   "_type" :    "employee",
@@ -36,8 +38,10 @@ curl -X GET "localhost:9200/megacorp/employee/1"
       "interests":  [ "sports", "music" ]
   }
 }
+
 2.1:) 检索所有 搜索默认返回十条结果
 curl -X GET "localhost:9200/megacorp/employee/_search"
+
 {
     "took": 24,
     "timed_out": false,
@@ -70,8 +74,11 @@ curl -X GET "localhost:9200/megacorp/employee/_search"
         ]
     }
 }
+
+
 2.1.1:) 检索姓氏为 ``Smith`` 的雇员 (query-string)
 curl -X GET "localhost:9200/megacorp/employee/_search?q=last_name:Smith"
+
 {
     "took": 4,
     "timed_out": false,
@@ -104,7 +111,41 @@ curl -X GET "localhost:9200/megacorp/employee/_search?q=last_name:Smith"
         ]
     }
 }
+
 2.1.2:) 检索使用查询表达式 (DSL)
+curl -X GET "localhost:9200/megacorp/employee/_search" -H 'Content-Type: application/json' -d'
+{
+    "query" : {
+        "match" : {
+            "last_name" : "Smith"
+        }
+    }
+}
+'
+
+curl -X GET "localhost:9200/megacorp/employee/_search" -H 'Content-Type: application/json' -d'
+{
+    "query" : {
+        "bool": {
+            "must": {
+                "match" : {
+                    "last_name" : "smith" 
+                }
+            },
+            "filter": {
+                "range" : {
+                    "age" : { "gt" : 30 } 
+                }
+            }
+        }
+    }
+}
+'
+
+
+
+
+
 
 
 
