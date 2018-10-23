@@ -1,6 +1,11 @@
 Logstash
+
 Logstash是一个用于管理日志和事件的工具，
-你可以用它去收集日志、转换日志、解析日志并将他们作为数据提供给其它模块调用，例如搜索、存储等。
+你可以用它去
+**收集日志**、
+**转换日志**、
+**解析日志**
+并将他们作为数据提供给其它模块调用，例如搜索、存储等。
 
 # Config
 # This is a comment. You should use comments to describe
@@ -26,5 +31,13 @@ output {
 }
 
 
-## Start Log
+## 1.Start Log
+## 配置文件的方式启动
 bin/logstash -f your_path_logstash.conf
+## 命令行方式启动（此时的输入输出都是控制台）
+bin/logstash -e 'input { stdin { } } output { stdout {} }'
+
+## 2.Parse log
+
+
+
