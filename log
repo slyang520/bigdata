@@ -2,4 +2,29 @@ Logstash
 Logstash是一个用于管理日志和事件的工具，
 你可以用它去收集日志、转换日志、解析日志并将他们作为数据提供给其它模块调用，例如搜索、存储等。
 
+# Config
+# This is a comment. You should use comments to describe
+# parts of your configuration.
+input {
+  file {
+    path => "/var/log/messages"
+    type => "syslog"
+  }
+  file {
+    path => "/var/log/apache/access.log"
+    type => "apache"
+  }
+  ...
+}
+filter {
+  ...
+}
+output {
+  elasticsearch { hosts => ["localhost:9200"] }
+  stdout { codec => rubydebug } 
+  ...
+}
 
+
+## Start Log
+bin/logstash -f your_path_logstash.conf
