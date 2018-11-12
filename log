@@ -1,4 +1,5 @@
 Logstash
+https://doc.yonyoucloud.com/doc/logstash-best-practice-cn/output/elasticsearch.html
 
 Logstash是一个用于管理日志和事件的工具，
 你可以用它去
