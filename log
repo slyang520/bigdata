@@ -36,6 +36,19 @@ output {
 bin/logstash -f your_path_logstash.conf
 ## 命令行方式启动（此时的输入输出都是控制台）
 bin/logstash -e 'input { stdin { } } output { stdout {} }'
+## 检测配置 
+logstash -f your_path_logstash.conf -t
+
+-f 制定配置文件，目录或者通配符加载配置信息
+-e 用于指定字符串输入
+-w 指定filterworkers的数量，指定logstash工作线程数量
+-l 指定logstash默认日志写入文件中，默认是控制台输出
+--quiet 静默模式 仅仅只有error级别log输出
+--verbose info级别的log输出
+--debug debug级别日志的log输出
+--V 查看logstash版本
+-p 可以写自己的插件，然后指定好路径使用她们
+-t 测试logstash读取到的配置文件语法能否正常解析
 
 ## 2.配置
 https://doc.yonyoucloud.com/doc/logstash-best-practice-cn/output/elasticsearch.html
