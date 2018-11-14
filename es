@@ -82,7 +82,7 @@ curl -X GET "localhost:9200/megacorp/employee/_search"
 
 
 2.1.1:) 检索姓氏为 ``Smith`` 的雇员 (query-string)
-curl -X GET "localhost:9200/megacorp/employee/_search?q=last_name:Smith"
+curl -X POST "localhost:9200/megacorp/employee/_search?q=last_name:Smith"
 
 {
     "took": 4,
@@ -128,7 +128,7 @@ curl -X GET "localhost:9200/megacorp/employee/_search" -H 'Content-Type: applica
 }
 '
 
-curl -X GET "localhost:9200/megacorp/employee/_search" -H 'Content-Type: application/json' -d'
+curl -X POST "localhost:9200/megacorp/employee/_search" -H 'Content-Type: application/json' -d'
 {
     "query" : {
         "bool": {
