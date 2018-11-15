@@ -4,6 +4,10 @@ ElasticSearch是一个基于Lucene的搜索服务器。
 Elasticsearch是用Java开发的，并作为Apache许可条款下的开放源码发布，是当前流行的企业级搜索引擎。
 设计用于云计算中，能够达到实时搜索，稳定，可靠，快速，安装使用方便。
 
+# doc
+# https://www.elastic.co/guide/cn/elasticsearch/guide/current/index.html
+# https://tomoya92.github.io/2018/08/24/elasticsearch/
+
 索引
   （名词）
    一个 索引 类似于传统关系数据库中的一个 数据库 ，是一个存储关系型文档的地方。
