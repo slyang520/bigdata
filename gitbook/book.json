@@ -1,0 +1,10 @@
+{
+    "title": "elasticsearch book",
+    "author": "slyang <slyang520@yeah.net>",
+    "description": "This is a sample book created by gitbook",
+    "language": "zh-hans",
+    "plugins": [
+        "theme-opendocs"
+    ],
+    "variables": {}
+}
