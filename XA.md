@@ -47,12 +47,14 @@ update test set b = 1 where a = 10;
 # 分库1和分库2都执行
 xa end ‘xid1’; 
 xa prepare ‘xid1’;
-# prepare都成功 ,分库都执行 
+---------------------------------[以上是第一阶段]
+# prepare都成功 ,分库都执行
 xa commit ‘xid1’;
 # prepare有一个异常
 xa rollback ‘xid1’;
 ```
+### 3pc TODO
+
 
 ### TCC TODO
-
 
