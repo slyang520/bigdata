@@ -63,8 +63,15 @@ xa commit ‘xid1’;
 # prepare有一个异常
 xa rollback ‘xid1’;
 ```
-### 3pc TODO
 
+### TCC  (TODO)
+``` 
+Try-Confirm-Cancel
+服务化的2阶段提交
 
-### TCC TODO
-
+一阶段:
+  Try 检查预留资源   
+二阶段:
+  Confirm/Cancel 真正的业务操作/预留资源释放
+     
+```
