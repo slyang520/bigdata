@@ -73,4 +73,25 @@ Redis服务器不负责写入aof，而是交由操作系统来处理什么时候
 
 ```
 
+## 3. 数据恢复
+
+### RDB 手动恢复
+```bash
+# 检测rdb 文件的完整性 
+redis-check-rdb /usr/local/var/db/redis/dump.rdb
+# 数据量大 文件分片的数据怎么合并 ？？？？？  【https://github.com/sripathikrishnan/redis-rdb-tools】
+
+->redis-cli
+>shutdown  #停止会保存dump文件【测试不要把之前的文件覆盖】
+看 redis.conf 看配置的dump文件 和目录  重启
+
+```
+
+### AOF 恢复
+
+
+
+
+
+
 
