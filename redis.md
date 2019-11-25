@@ -9,6 +9,7 @@ RDB是一种快照存储持久化方式，具体就是将Redis某一时刻的内
 默认保存的文件名为dump.rdb
 ```
 ## 1.2 手动触发
+
 ### 1.2.1 SAVE  
 ```
 客户端提交此命令
@@ -71,6 +72,11 @@ appendfsync的默认写入策略，每秒写入一次aof文件，因此，最多
 3. no
 Redis服务器不负责写入aof，而是交由操作系统来处理什么时候写入aof文件。更快，但也是最不安全的选择，不推荐使用。
 
+## 2.2 手动触发
+
+```
+->redis-cli
+->bgrewriteaof
 ```
 
 ## 3. 数据恢复
@@ -82,13 +88,31 @@ redis-check-rdb /usr/local/var/db/redis/dump.rdb
 # 数据量大 文件分片的数据怎么合并 ？？？？？  【https://github.com/sripathikrishnan/redis-rdb-tools】
 
 ->redis-cli
->shutdown  #停止会保存dump文件【测试不要把之前的文件覆盖】
+->shutdown  #停止会保存dump文件【测试不要把之前的文件覆盖】
 看 redis.conf 看配置的dump文件 和目录  重启
 
 ```
 
 ### AOF 恢复
+```
+# 检查文件完整性
+redis-check-aof /usr/local/var/db/redis/appendonly.aof
+# RDB AOF 同时存在是 保证只有 xx.aof  不要留 dump 文件
+```
 
+# 常用运维操作
+
+```bash
+# 启动
+redis-server redis.conf
+# 停止
+redis-cli
+shutdown
+# 查看配置所有配置 【* 替换成你查找的key】
+config get *
+# 持久化路径
+config get dir
+```
 
 
 
