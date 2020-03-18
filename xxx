@@ -1,1 +1,6 @@
 ab1006b6216e485bc8983db4ca2dd0d6
+
+同步.gitmodules
+git submodule sync
+同步子模块代码
+git submodule update --remote
