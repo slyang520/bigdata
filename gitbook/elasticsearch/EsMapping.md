@@ -72,3 +72,63 @@ strict 文档写入报错
 }
 ```
 
+## 新建索引
+```
+PUT my_index
+{
+  "mappings": {
+    "my_type": {
+      "properties": {
+        "title": {
+          "type":  "text"
+        }
+      }
+    }
+  }
+}
+
+```
+
+
+## 文档字段类型
+
+
+字符串类型 text,keyword
+```
+string × 该类型在5.x后删除
+
+text    当一个字段需要被全文索引时设置为此字段,
+        存储全文搜索数据, 例如: 邮箱内容、日志内容、地址、代码块、博客文章内容等。默认结合standard analyzer(标准解析器)对文本进行分词、倒排索引。
+        text类型的字段不用于排序，很少用于聚合（termsAggregation除外）
+
+keyword keyword类型的字段只能通过精确值搜索到。
+        不进行分词，直接索引,支持模糊、支持精确匹配，支持聚合、排序操作。
+        用于存储邮箱号码、手机号码、主机名、状态码、邮政编码、标签、年龄、性别等数据。
+        用于筛选数据(例如: select * from x where status='open')、排序、聚合(统计)。
+        直接将完整的文本保存到倒排索引中。
+        
+        
+
+以下让keyword字段也有被全文检索的能力
+{
+    "type": "keyword",
+    "fields": {
+        "make_title_searchable": {
+            "type": "text"
+        }
+    }
+}
+
+{
+    "query": {
+        "match": {
+            "title.make_title_searchable": "ElasticSearch"
+        }
+    }
+}
+        
+```
+
+
+
+
