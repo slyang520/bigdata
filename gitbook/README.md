@@ -14,3 +14,11 @@ gitbook serve
 
 Serving book on http://localhost:4000
 ```
+
+# Example 
+
+## useful-elasticsearch-example-queries
+```
+https://ruby-china.org/topics/38431
+https://dzone.com/articles/23-useful-elasticsearch-example-queries
+```
