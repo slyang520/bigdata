@@ -128,6 +128,51 @@ keyword keyword类型的字段只能通过精确值搜索到。
 }
         
 ```
+### 复杂场景的索引
+
+```json
+1：title: text
+2: title_keyword: keyword
+3: title_keyword_text: keyword,text
+
+4: text_ik_max_word :分词插件(ik_max_word)
+5：text_ik_smart：分词插件(ik_smart)
+
+{
+    "mappings": {
+        "_doc": {
+            "properties": {
+                "title": {
+                    "type": "text"
+                },
+                "title_keyword": {
+                    "type": "keyword"
+                },
+                "title_keyword_text": {
+                    "type": "keyword",
+                    "fields": {
+                        "make_title_searchable": {
+                            "type": "text"
+                        }
+                    }
+                },
+                "text_ik_max_word": {
+                    "type": "text",
+                    "analyzer": "ik_max_word"
+                },
+                "text_ik_smart": {
+                    "type": "text",
+                    "analyzer": "ik_smart"
+                },
+                "text_standard": {
+                    "type": "text",
+                    "analyzer": "standard"
+                 }
+            }
+        }
+    }
+}
+```
 
 
 
