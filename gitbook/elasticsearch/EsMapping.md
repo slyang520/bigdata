@@ -128,7 +128,7 @@ keyword keyword类型的字段只能通过精确值搜索到。
 }
         
 ```
-### 复杂场景的索引
+### 复杂场景的新建索引
 
 ```json
 1：title: text
@@ -173,6 +173,80 @@ keyword keyword类型的字段只能通过精确值搜索到。
     }
 }
 ```
+
+### 测试分词效果
+
+```
+es >=6
+
+POST  _analyze/?pretty
+{
+  "analyzer": "ik_max_word",
+  "text": "测试用例"
+}
+
+
+{
+    "tokens": [
+        {
+            "token": "测试",
+            "start_offset": 0,
+            "end_offset": 2,
+            "type": "CN_WORD",
+            "position": 0
+        },
+        {
+            "token": "试用",
+            "start_offset": 1,
+            "end_offset": 3,
+            "type": "CN_WORD",
+            "position": 1
+        },
+        {
+            "token": "例",
+            "start_offset": 3,
+            "end_offset": 4,
+            "type": "CN_CHAR",
+            "position": 2
+        }
+    ]
+}
+
+es<6
+/_analyze?analyzer=ik_max_word&text=测试用例
+
+{
+    "tokens": [
+        {
+            "token": "测试",
+            "start_offset": 0,
+            "end_offset": 2,
+            "type": "CN_WORD",
+            "position": 0
+        },
+        {
+            "token": "试用",
+            "start_offset": 1,
+            "end_offset": 3,
+            "type": "CN_WORD",
+            "position": 1
+        },
+        {
+            "token": "例",
+            "start_offset": 3,
+            "end_offset": 4,
+            "type": "CN_CHAR",
+            "position": 2
+        }
+    ]
+}
+
+```
+
+
+
+
+
 
 
 
