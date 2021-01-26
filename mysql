@@ -1,0 +1,10 @@
+```sql
+-- 巧用 having 1 去重
+-- 保证每个分组只有最新的一条数据
+SELECT
+	t.* 
+FROM
+	( SELECT t1.* FROM table t1 WHERE  HAVING 1 order by create_time desc ) t 
+GROUP BY
+	youGroup
+```
