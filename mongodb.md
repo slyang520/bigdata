@@ -126,7 +126,7 @@ docker run -d \
 -v /opt/xxx/middle-images/mongos1/volume/mongo.key:/opt/keyfile/mongo.key \
 -e MONGO_INITDB_ROOT_USERNAME=rootuser \
 -e MONGO_INITDB_ROOT_PASSWORD=rootpas \
-$img --configdb rs_config_server/10.101.36.227:27117 --keyFile /opt/keyfile/mongo.key
+$img --configdb rs_config_server/ip1:27117 --keyFile /opt/keyfile/mongo.key
 
 
 chmod -R 755 /opt/xxx/middle-images/shard1_s1/volume/db
