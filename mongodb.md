@@ -86,3 +86,54 @@ sh.addShard("rs_shard2/ip2:27317")
 sh.addShard("rs_shard3/ip3:27417")
 ```
 
+```shell
+
+# shard
+
+docker run -d \
+--restart=always \
+--privileged=true \
+--name shard1_s1 \
+-p 27217:27018 \
+-v /opt/xxx/middle-images/shard1_s1/volume/db:/data/db \
+-v /opt/xxx/middle-images/shard1_s1/volume/init/:/docker-entrypoint-initdb.d/ \
+-v /opt/xxx/middle-images/shard1_s1/volume/mongo.key:/opt/keyfile/mongo.key \
+-e MONGO_INITDB_ROOT_USERNAME=rootuser \
+-e MONGO_INITDB_ROOT_PASSWORD=rootpas \
+$img --auth --shardsvr --replSet "rs_shard1" --keyFile /opt/keyfile/mongo.key
+
+# config_s1
+docker run -d \
+--restart=always \
+--privileged=true \
+--name config_s1 \
+-p 27117:27019 \
+-v /opt/xxx/middle-images/config_s1/volume/db:/data/db \
+-v /opt/xxx/middle-images/config_s1/volume/init/:/docker-entrypoint-initdb.d/ \
+-v /opt/xxx/middle-images/config_s1/volume/mongo.key:/opt/keyfile/mongo.key \
+-e MONGO_INITDB_ROOT_USERNAME=rootuser \
+-e MONGO_INITDB_ROOT_PASSWORD=rootpas \
+$img --auth --configsvr --replSet "rs_config_server" --keyFile /opt/keyfile/mongo.key
+
+
+docker run -d \
+--entrypoint mongos \
+--restart=always \
+--name mongos1 \
+-p 27517:27017 \
+-v /opt/xxx/middle-images/mongos1/volume/db:/data/db \
+-v /opt/xxx/middle-images/mongos1/volume/init/:/docker-entrypoint-initdb.d/ \
+-v /opt/xxx/middle-images/mongos1/volume/mongo.key:/opt/keyfile/mongo.key \
+-e MONGO_INITDB_ROOT_USERNAME=rootuser \
+-e MONGO_INITDB_ROOT_PASSWORD=rootpas \
+$img --configdb rs_config_server/10.101.36.227:27117 --keyFile /opt/keyfile/mongo.key
+
+
+chmod -R 755 /opt/xxx/middle-images/shard1_s1/volume/db
+chmod -R 755 /opt/xxx/middle-images/shard1_s1/volume/init
+
+chmod 400 /opt/xxx/middle-images/shard1_s1/volume/mongo.key
+chown 999 /opt/xxx/middle-images/shard1_s1/volume/mongo.key
+
+
+```
