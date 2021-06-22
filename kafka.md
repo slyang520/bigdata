@@ -5,6 +5,8 @@
 https://github.com/wurstmeister/kafka-docker/wiki/Connectivity
 https://www.cnblogs.com/linjiqin/p/11891776.html
 
+
+
 # 外部监听,内部监听
 https://cwiki.apache.org/confluence/display/KAFKA/KIP-103%3A+Separation+of+Internal+and+External+traffic
 
@@ -15,4 +17,11 @@ https://mp.weixin.qq.com/s?__biz=MzkwMDE1MzkwNQ==&mid=2247496046&idx=1&sn=515fc9
 ```shell
 kafka tool
 https://www.kafkatool.com/download.html
+```
+
+```
+https://hub.docker.com/_/zookeeper
+集群配置
+-e ZOO_MY_ID=2 \
+-e "ZOO_SERVERS=server.1=xxx:2888:3888 server.2=0.0.0.0:2888:3888 server.3=yyy:2888:3888" \
 ```
